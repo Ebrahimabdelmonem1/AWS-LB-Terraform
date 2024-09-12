@@ -5,7 +5,7 @@ resource "aws_key_pair" "my_key" {
 
 
 resource "aws_security_group" "my_sg" {
-  vpc_id = aws_vpc.my_VPC.id  
+  vpc_id      = aws_vpc.my_VPC.id
   name        = "my-security-group"
   description = "Allow SSH inbound traffic"
 
@@ -13,13 +13,13 @@ resource "aws_security_group" "my_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]  # Allow SSH
+    cidr_blocks = ["0.0.0.0/0"] # Allow SSH
   }
   ingress {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]  # Allow HTTP from anywhere
+    cidr_blocks = ["0.0.0.0/0"] # Allow HTTP from anywhere
   }
 
   egress {
@@ -37,10 +37,10 @@ resource "aws_security_group" "my_sg" {
 
 # Launch an EC2 Instance in the Public 1 Subnet
 resource "aws_instance" "public1_instance" {
-  ami   = "ami-0ad554caf874569d2"
-  instance_type = "t2.micro"
-  subnet_id     = aws_subnet.public_sub1.id
-  key_name      = aws_key_pair.my_key.key_name
+  ami                    = "ami-0ad554caf874569d2"
+  instance_type          = "t2.micro"
+  subnet_id              = aws_subnet.public_sub1.id
+  key_name               = aws_key_pair.my_key.key_name
   vpc_security_group_ids = [aws_security_group.my_sg.id]
 
   # Ensure a public IP is associated with this instance
@@ -54,10 +54,10 @@ resource "aws_instance" "public1_instance" {
 
 # Launch an EC2 Instance in the Private 1 Subnet
 resource "aws_instance" "private1_instance" {
-  ami   = "ami-0ad554caf874569d2"
- instance_type = "t2.micro"
-  subnet_id     = aws_subnet.private_sub1.id
-  key_name      = aws_key_pair.my_key.key_name
+  ami                    = "ami-0ad554caf874569d2"
+  instance_type          = "t2.micro"
+  subnet_id              = aws_subnet.private_sub1.id
+  key_name               = aws_key_pair.my_key.key_name
   vpc_security_group_ids = [aws_security_group.my_sg.id]
 
   # Ensure a public IP is associated with this instance
@@ -74,10 +74,10 @@ resource "aws_instance" "private1_instance" {
 
 # Launch an EC2 Instance in the Public 2 Subnet
 resource "aws_instance" "public2_instance" {
-  ami   = "ami-0ad554caf874569d2"
-  instance_type = "t2.micro"
-  subnet_id     = aws_subnet.public_sub2.id
-  key_name      = aws_key_pair.my_key.key_name
+  ami                    = "ami-0ad554caf874569d2"
+  instance_type          = "t2.micro"
+  subnet_id              = aws_subnet.public_sub2.id
+  key_name               = aws_key_pair.my_key.key_name
   vpc_security_group_ids = [aws_security_group.my_sg.id]
 
   # Ensure a public IP is associated with this instance
@@ -91,10 +91,10 @@ resource "aws_instance" "public2_instance" {
 
 # Launch an EC2 Instance in the Private 2 Subnet
 resource "aws_instance" "private2_instance" {
-  ami   = "ami-0ad554caf874569d2"
- instance_type = "t2.micro"
-  subnet_id     = aws_subnet.private_sub2.id
-  key_name      = aws_key_pair.my_key.key_name
+  ami                    = "ami-0ad554caf874569d2"
+  instance_type          = "t2.micro"
+  subnet_id              = aws_subnet.private_sub2.id
+  key_name               = aws_key_pair.my_key.key_name
   vpc_security_group_ids = [aws_security_group.my_sg.id]
 
   # Ensure a public IP is associated with this instance
@@ -103,6 +103,6 @@ resource "aws_instance" "private2_instance" {
   tags = {
     Name = "private2_ec2"
   }
-} 
+}
 
 

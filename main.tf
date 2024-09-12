@@ -1,19 +1,19 @@
 #create the vpc
 resource "aws_vpc" "my_VPC" {
-  cidr_block = "192.0.0.0/16"
+  cidr_block           = "192.0.0.0/16"
   enable_dns_support   = true
   enable_dns_hostnames = true
   tags = {
-    Name = "MY_VPC"                
+    Name = "MY_VPC"
   }
 }
 
 
 #create public subnet 1
 resource "aws_subnet" "public_sub1" {
-  vpc_id     = aws_vpc.my_VPC.id
-  cidr_block = "192.0.1.0/24"
- availability_zone = "us-east-1a"
+  vpc_id            = aws_vpc.my_VPC.id
+  cidr_block        = "192.0.1.0/24"
+  availability_zone = "us-east-1a"
 
   tags = {
     Name = "public1"
@@ -24,8 +24,8 @@ resource "aws_subnet" "public_sub1" {
 
 #create public subnet 2
 resource "aws_subnet" "public_sub2" {
-  vpc_id     = aws_vpc.my_VPC.id
-  cidr_block = "192.0.3.0/24"
+  vpc_id            = aws_vpc.my_VPC.id
+  cidr_block        = "192.0.3.0/24"
   availability_zone = "us-east-1b"
 
   tags = {
@@ -36,9 +36,9 @@ resource "aws_subnet" "public_sub2" {
 
 #create private subnet 1
 resource "aws_subnet" "private_sub1" {
-  vpc_id     = aws_vpc.my_VPC.id
-  cidr_block = "192.0.2.0/24"
-    availability_zone = "us-east-1a"
+  vpc_id            = aws_vpc.my_VPC.id
+  cidr_block        = "192.0.2.0/24"
+  availability_zone = "us-east-1a"
 
   tags = {
     Name = "private1"
@@ -48,10 +48,10 @@ resource "aws_subnet" "private_sub1" {
 #create private subnet 1
 
 resource "aws_subnet" "private_sub2" {
-  vpc_id     = aws_vpc.my_VPC.id
-  cidr_block = "192.0.4.0/24"
+  vpc_id            = aws_vpc.my_VPC.id
+  cidr_block        = "192.0.4.0/24"
   availability_zone = "us-east-1b"
-   tags = {
+  tags = {
     Name = "private2"
   }
 
@@ -91,7 +91,7 @@ resource "aws_route_table" "private_route_table" {
     gateway_id = "local"
   }
 
-  
+
 
   tags = {
     Name = "Private_Route_Table"
