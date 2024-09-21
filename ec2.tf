@@ -1,6 +1,6 @@
 resource "aws_key_pair" "my_key" {
   key_name   = "my-key"
-  public_key = file("~/.ssh/id_rsa.pub")
+  public_key = file("/root/.ssh/id_rsa.pub")
 }
 
 
@@ -59,9 +59,9 @@ resource "aws_instance" "private1_instance" {
   subnet_id              = aws_subnet.private_sub1.id
   key_name               = aws_key_pair.my_key.key_name
   vpc_security_group_ids = [aws_security_group.my_sg.id]
+  user_data              = file("nginx.sh")
 
-  # Ensure a public IP is associated with this instance
-  associate_public_ip_address = true
+
 
   tags = {
     Name = "private1_ec2"
@@ -96,9 +96,8 @@ resource "aws_instance" "private2_instance" {
   subnet_id              = aws_subnet.private_sub2.id
   key_name               = aws_key_pair.my_key.key_name
   vpc_security_group_ids = [aws_security_group.my_sg.id]
+  user_data              = file("nginx.sh")
 
-  # Ensure a public IP is associated with this instance
-  associate_public_ip_address = true
 
   tags = {
     Name = "private2_ec2"
