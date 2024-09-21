@@ -1,6 +1,6 @@
-#output "load_balancer_dns" {
-#  value = aws_lb.my_lb.dns_name
-#}
+output "load_balancer_dns" {
+  value = aws_lb.my_lb.dns_name
+}
 #output "public1_instance.ip"{
 # value = aws_instance.public1_instance.ip
 #}
