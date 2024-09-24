@@ -1,0 +1,20 @@
+---
+
+- name: install docker
+  hosts: web
+  become: true
+
+  tasks:
+    # ... existing tasks for installing Docker and repository ...
+
+- name: Run Docker Compose
+  hosts: web
+  become: true
+
+  tasks:
+    - name: Start Docker Compose services
+      command: docker-compose up -d
+      environment:
+        NETWORK_SUBNET: "{{ NETWORK_SUBNET }}"  # Assuming NETWORK_SUBNET is defined
+        NGINX_IP: "{{ NGINX_IP }}"             # Assuming NGINX_IP is defined
+        
